@@ -14,14 +14,13 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ======= Data Preparation =======
 transform = transforms.Compose([
-    transforms.ToTensor(),  # Convert images to PyTorch tensors
-    transforms.Normalize((0.1307,), (0.3081,))  # Normalize using MNIST mean & std
+    transforms.Grayscale(num_output_channels=1),  # Ensure single channel
+    transforms.ToTensor(),
+    transforms.Normalize((0.1307,), (0.3081,))
 ])
 
-train_dataset = datasets.MNIST(
-    root='./data', train=True, download=True, transform=transform)
-test_dataset = datasets.MNIST(
-    root='./data', train=False, download=True, transform=transform)
+train_dataset = datasets.ImageFolder(root='mon_digits/train', transform=transform)
+test_dataset = datasets.ImageFolder(root='mon_digits/test', transform=transform)
 
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
@@ -68,4 +67,4 @@ def test():
 if __name__ == "__main__":
     train()
     test()
-    torch.save(model.state_dict(), "model.pth")
+    torch.save(model.state_dict(), "mon_model_v1.pth")

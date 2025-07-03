@@ -21,7 +21,7 @@ class Net(nn.Module):
         self.pool = nn.MaxPool2d(2, 2)
         # Fully connected layers
         self.fc1 = nn.Linear(64 * 7 * 7, 128)  # 7x7 is the output size after 2 poolings
-        self.fc2 = nn.Linear(128, 9)  # 10 output classes for MNIST (digits 0-9)
+        self.fc2 = nn.Linear(128, 10)  # 10 output classes for MNIST (digits 0-9)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))  # [batch, 32, 14, 14]
