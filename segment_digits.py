@@ -2,8 +2,8 @@ import cv2
 import os
 
 # ======= CONFIGURATION =======
-INPUT_IMAGE = "mon_sheets/Mon_four.jpg"
-OUTPUT_FOLDER = "mon_segmented_raw/၄"
+INPUT_IMAGE = "mon_sheets/Mon_zero.jpg"
+OUTPUT_FOLDER = "mon_segmented_raw/၀"
 RESIZE_TO = (28, 28)  # Match MNIST size
 PADDING = 4           # Add white border around digits
 
